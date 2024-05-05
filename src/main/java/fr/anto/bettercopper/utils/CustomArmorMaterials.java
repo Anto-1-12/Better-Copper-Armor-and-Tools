@@ -1,63 +1,50 @@
 package fr.anto.bettercopper.utils;
 
 import fr.anto.bettercopper.bettercopper;
-import net.minecraft.Util;
+import fr.anto.bettercopper.init.ModItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import java.util.EnumMap;
 import java.util.function.Supplier;
 
-public enum CustomArmorMaterials implements StringRepresentable, ArmorMaterial {
+public enum CustomArmorMaterials implements ArmorMaterial {
 
-    COPPER_ARMOR(bettercopper.MODID + ":copper", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266654_) -> {
-        p_266654_.put(ArmorItem.Type.BOOTS, 2);
-        p_266654_.put(ArmorItem.Type.LEGGINGS, 4);
-        p_266654_.put(ArmorItem.Type.CHESTPLATE, 5);
-        p_266654_.put(ArmorItem.Type.HELMET, 2);
-    }), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    COPPER_ARMOR(bettercopper.MODID + ":copper", 20, new int[]{2, 4, 5, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.of(Items.COPPER_INGOT);
     });
 
-
-    private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266653_) -> {
-        p_266653_.put(ArmorItem.Type.BOOTS, 13);
-        p_266653_.put(ArmorItem.Type.LEGGINGS, 15);
-        p_266653_.put(ArmorItem.Type.CHESTPLATE, 16);
-        p_266653_.put(ArmorItem.Type.HELMET, 11);
-    });
+    private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;
     private final int durabilityMultiplier;
-    private final EnumMap<ArmorItem.Type, Integer> protectionFunctionForType;
+    private final int[] slotProtections;
     private final int enchantmentValue;
     private final SoundEvent sound;
     private final float toughness;
     private final float knockbackResistance;
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
-    private CustomArmorMaterials(String p_268171_, int p_268303_, EnumMap<ArmorItem.Type, Integer> p_267941_, int p_268086_, SoundEvent p_268145_, float p_268058_, float p_268180_, Supplier<Ingredient> p_268256_) {
-        this.name = p_268171_;
-        this.durabilityMultiplier = p_268303_;
-        this.protectionFunctionForType = p_267941_;
-        this.enchantmentValue = p_268086_;
-        this.sound = p_268145_;
-        this.toughness = p_268058_;
-        this.knockbackResistance = p_268180_;
-        this.repairIngredient = new LazyLoadedValue<>(p_268256_);
+    private CustomArmorMaterials(String p_40474_, int p_40475_, int[] p_40476_, int p_40477_, SoundEvent p_40478_, float p_40479_, float p_40480_, Supplier<Ingredient> p_40481_) {
+        this.name = p_40474_;
+        this.durabilityMultiplier = p_40475_;
+        this.slotProtections = p_40476_;
+        this.enchantmentValue = p_40477_;
+        this.sound = p_40478_;
+        this.toughness = p_40479_;
+        this.knockbackResistance = p_40480_;
+        this.repairIngredient = new LazyLoadedValue<>(p_40481_);
     }
 
-    public int getDurabilityForType(ArmorItem.Type p_266745_) {
-        return HEALTH_FUNCTION_FOR_TYPE.get(p_266745_) * this.durabilityMultiplier;
+    public int getDurabilityForSlot(EquipmentSlot p_40484_) {
+        return HEALTH_PER_SLOT[p_40484_.getIndex()] * this.durabilityMultiplier;
     }
 
-    public int getDefenseForType(ArmorItem.Type p_266752_) {
-        return this.protectionFunctionForType.get(p_266752_);
+    public int getDefenseForSlot(EquipmentSlot p_40487_) {
+        return this.slotProtections[p_40487_.getIndex()];
     }
 
     public int getEnchantmentValue() {
@@ -82,9 +69,5 @@ public enum CustomArmorMaterials implements StringRepresentable, ArmorMaterial {
 
     public float getKnockbackResistance() {
         return this.knockbackResistance;
-    }
-
-    public String getSerializedName() {
-        return this.name;
     }
 }
