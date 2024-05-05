@@ -5,6 +5,7 @@ import fr.anto.bettercopper.oxidized.WeatheringCopper;
 import fr.anto.bettercopper.oxidized.WeatheringCopperSlabBlock;
 import fr.anto.bettercopper.oxidized.WeatheringCopperStairBlock;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -54,7 +55,7 @@ public class ModBlocks extends Blocks {
     }
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block)
     {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS)));
     }
 
     public static void register(IEventBus eventBus){

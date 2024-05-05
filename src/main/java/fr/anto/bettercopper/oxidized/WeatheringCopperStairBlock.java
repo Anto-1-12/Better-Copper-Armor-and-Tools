@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +18,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
+import java.util.Random;
+
 public class WeatheringCopperStairBlock extends StairBlock implements WeatheringCopper {
    private final WeatherState weatherState;
    private final Waxedorno waxedorno;
@@ -30,7 +31,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
       this.waxedorno = waxedorno;
    }
 
-   public void randomTick(BlockState bstate, ServerLevel slevel, BlockPos bpos, RandomSource rsource) {
+   public void randomTick(BlockState bstate, ServerLevel slevel, BlockPos bpos, Random rsource) {
       this.onRandomTick(bstate, slevel, bpos, rsource);
    }
 
@@ -54,7 +55,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
                   WeatheringCopper.getPrevious(bstate).ifPresent((state) -> {
                      level.setBlockAndUpdate(Bpos, state);
                      player.swing(player.getUsedItemHand());
-                     player.playSound(SoundEvents.AXE_SCRAPE);
+                     player.playSound(SoundEvents.AXE_SCRAPE,1f,1f);
 
                      if (heldItem.isDamageableItem()) {
                         heldItem.hurtAndBreak(1, player, (entity) -> entity.broadcastBreakEvent(hand));
@@ -82,7 +83,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
                WeatheringCopper.getWaxedVarient(bstate).ifPresent((state) -> {
                   level.setBlockAndUpdate(Bpos, state);
                   player.swing(player.getUsedItemHand());
-                  player.playSound(SoundEvents.AXE_SCRAPE);
+                  player.playSound(SoundEvents.AXE_SCRAPE,1f,1f);
 
                   if (heldItem.isDamageableItem()) {
                      heldItem.hurtAndBreak(1, player, (entity) -> entity.broadcastBreakEvent(hand));
@@ -110,7 +111,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
             WeatheringCopper.getWaxedVarient(bstate).ifPresent((state) -> {
                level.setBlockAndUpdate(Bpos, state);
                player.swing(player.getUsedItemHand());
-               player.playSound(SoundEvents.HONEYCOMB_WAX_ON);
+               player.playSound(SoundEvents.HONEYCOMB_WAX_ON, 1f ,1f);
 
                if (!player.getAbilities().instabuild) {
                   heldItem.shrink(1);
