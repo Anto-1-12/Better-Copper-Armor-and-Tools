@@ -17,7 +17,7 @@ issueTrackerURL="http://my.issue.tracker/" #optional
 # The modid of the mod
 modId="bettercopper" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="1.2" #mandatory
+version="1.1" #mandatory
  # A display name for the mod
 displayName="Better Copper" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
@@ -50,6 +50,6 @@ This mod adds armor, tools and blocks in copper
 [[dependencies.bettercopper]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.20.4]"
+    versionRange="[1.19.4]"
     ordering="NONE"
     side="BOTH"
