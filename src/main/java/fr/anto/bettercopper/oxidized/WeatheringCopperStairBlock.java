@@ -31,13 +31,13 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
    }
 
    public void randomTick(BlockState bstate, ServerLevel slevel, BlockPos bpos, RandomSource rsource) {
-      this.changeOverTime(bstate, slevel, bpos, rsource);
+      this.onRandomTick(bstate, slevel, bpos, rsource);
    }
 
    @Override
    public InteractionResult use(BlockState bstate, Level level, BlockPos Bpos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 
-      Level world = player.level();
+      Level world = player.level;
       ItemStack heldItem = player.getItemInHand(hand);
       Item heldItemItem = heldItem.getItem();
 
