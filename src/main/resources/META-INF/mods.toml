@@ -17,13 +17,12 @@ issueTrackerURL="http://my.issue.tracker/" #optional
 # The modid of the mod
 modId="bettercopper" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="1.1" #mandatory
+version="1.3" #mandatory
  # A display name for the mod
 displayName="Better Copper" #mandatory
-# A URL to query for updates for this mod. See the JSON update specification <here>
-updateJSONURL="http://myurl.me/" #optional
+# A URL to query for updates for this mod. See the JSON update specification <here> #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="" #optional
+displayURL="https://www.curseforge.com/minecraft/mc-mods/better-copper-armor-and-tools" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="BetterCopper.png" #optional
 # A text field displayed in the mod UI

@@ -1,7 +1,6 @@
 package fr.anto.bettercopper.utils;
 
 import fr.anto.bettercopper.bettercopper;
-import fr.anto.bettercopper.init.ModItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
@@ -14,7 +13,7 @@ import java.util.function.Supplier;
 
 public enum CustomArmorMaterials implements ArmorMaterial {
 
-    COPPER_ARMOR(bettercopper.MODID + ":copper", 20, new int[]{2, 4, 5, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
+    COPPER_ARMOR(bettercopper.MODID + ":copper", 13, new int[]{2, 4, 5, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
         return Ingredient.of(Items.COPPER_INGOT);
     });
 
