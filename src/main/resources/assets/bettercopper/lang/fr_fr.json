@@ -1,6 +1,7 @@
 {
   "item.bettercopper.copper_heart": "Coeur en cuivre",
-  "item.bettercopper.copper_nugget": "Pépite de fer",
+  "item.bettercopper.reversed_copper_heart": "Coeur en cuivre inversé",
+  "item.bettercopper.copper_nugget": "Pépite de cuivre",
   "item.bettercopper.copper_axe": "Hache en cuivre",
   "item.bettercopper.copper_pickaxe": "Pioche en cuivre",
   "item.bettercopper.copper_shovel": "Pelle en cuivre",

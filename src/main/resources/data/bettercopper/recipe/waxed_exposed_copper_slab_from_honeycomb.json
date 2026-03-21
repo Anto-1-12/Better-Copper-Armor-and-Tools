@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_exposed_copper_slab",
+  "ingredients": [
+    {
+      "item": "bettercopper:exposed_copper_slab"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "id": "bettercopper:waxed_exposed_copper_slab"
+  }
+}

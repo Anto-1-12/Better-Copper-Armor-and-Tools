@@ -12,6 +12,8 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public interface WeatheringCopper extends ChangeOverTimeBlock<WeatheringCopper.WeatherState> {
+
+
    Supplier<BiMap<Block, Block>> NEXT_BY_BLOCK_STAIR = Suppliers.memoize(() -> {
       return ImmutableBiMap.<Block, Block>builder()
 

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "GNG",
+    "#G#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:copper_ingot"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "G": {
+      "item": "minecraft:enchanted_golden_apple"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "bettercopper:copper_heart"
+  }
+}

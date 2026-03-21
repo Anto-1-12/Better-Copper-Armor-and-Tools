@@ -2,89 +2,61 @@ package fr.anto.bettercopper.utils;
 
 import fr.anto.bettercopper.bettercopper;
 import net.minecraft.Util;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.EnumMap;
-import java.util.function.Supplier;
+import java.util.List;
 
-public enum CustomArmorMaterials implements StringRepresentable, ArmorMaterial {
+public class CustomArmorMaterials {
+    public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIALS = DeferredRegister.create(BuiltInRegistries.ARMOR_MATERIAL,bettercopper.MODID);
+    public static final Holder<ArmorMaterial> COPPER_ARMOR =
+            ARMOR_MATERIALS.register("copper", () -> new ArmorMaterial(
+                    // Determines the defense value of this armor material, depending on what armor piece it is.
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                        map.put(ArmorItem.Type.BOOTS, 2);
+                        map.put(ArmorItem.Type.LEGGINGS, 4);
+                        map.put(ArmorItem.Type.CHESTPLATE, 5);
+                        map.put(ArmorItem.Type.HELMET, 2);
+                        map.put(ArmorItem.Type.BODY, 4);
+                    }),
 
-    COPPER_ARMOR(bettercopper.MODID + ":copper", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266654_) -> {
-        p_266654_.put(ArmorItem.Type.BOOTS, 2);
-        p_266654_.put(ArmorItem.Type.LEGGINGS, 4);
-        p_266654_.put(ArmorItem.Type.CHESTPLATE, 5);
-        p_266654_.put(ArmorItem.Type.HELMET, 2);
-    }), 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
-        return Ingredient.of(Items.COPPER_INGOT);
-    });
-
-
-    private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266653_) -> {
-        p_266653_.put(ArmorItem.Type.BOOTS, 13);
-        p_266653_.put(ArmorItem.Type.LEGGINGS, 15);
-        p_266653_.put(ArmorItem.Type.CHESTPLATE, 16);
-        p_266653_.put(ArmorItem.Type.HELMET, 11);
-    });
-    private final String name;
-    private final int durabilityMultiplier;
-    private final EnumMap<ArmorItem.Type, Integer> protectionFunctionForType;
-    private final int enchantmentValue;
-    private final SoundEvent sound;
-    private final float toughness;
-    private final float knockbackResistance;
-    private final LazyLoadedValue<Ingredient> repairIngredient;
-
-    private CustomArmorMaterials(String p_268171_, int p_268303_, EnumMap<ArmorItem.Type, Integer> p_267941_, int p_268086_, SoundEvent p_268145_, float p_268058_, float p_268180_, Supplier<Ingredient> p_268256_) {
-        this.name = p_268171_;
-        this.durabilityMultiplier = p_268303_;
-        this.protectionFunctionForType = p_267941_;
-        this.enchantmentValue = p_268086_;
-        this.sound = p_268145_;
-        this.toughness = p_268058_;
-        this.knockbackResistance = p_268180_;
-        this.repairIngredient = new LazyLoadedValue<>(p_268256_);
-    }
-
-    public int getDurabilityForType(ArmorItem.Type p_266745_) {
-        return HEALTH_FUNCTION_FOR_TYPE.get(p_266745_) * this.durabilityMultiplier;
-    }
-
-    public int getDefenseForType(ArmorItem.Type p_266752_) {
-        return this.protectionFunctionForType.get(p_266752_);
-    }
-
-    public int getEnchantmentValue() {
-        return this.enchantmentValue;
-    }
-
-    public SoundEvent getEquipSound() {
-        return this.sound;
-    }
-
-    public Ingredient getRepairIngredient() {
-        return this.repairIngredient.get();
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public float getToughness() {
-        return this.toughness;
-    }
-
-    public float getKnockbackResistance() {
-        return this.knockbackResistance;
-    }
-
-    public String getSerializedName() {
-        return this.name;
-    }
+                    9,
+                    SoundEvents.ARMOR_EQUIP_IRON,
+                    () -> Ingredient.of(Tags.Items.INGOTS_COPPER),
+                    // Determines the texture locations of the armor to apply when rendering
+                    // This can also be specified by overriding 'IItemExtension#getArmorTexture' on your item if the armor texture needs to be more dynamic
+                    List.of(
+                            // Creates a new armor texture that will be located at:
+                            // - 'assets/mod_id/textures/models/armor/copper_layer_1.png' for the outer texture
+                            // - 'assets/mod_id/textures/models/armor/copper_layer_2.png' for the inner texture (only legs)
+                            new ArmorMaterial.Layer(
+                                    ResourceLocation.fromNamespaceAndPath(bettercopper.MODID, "copper")
+                            ),
+                            // Creates a new armor texture that will be rendered on top of the previous at:
+                            // - 'assets/mod_id/textures/models/armor/copper_layer_1_overlay.png' for the outer texture
+                            // - 'assets/mod_id/textures/models/armor/copper_layer_2_overlay.png' for the inner texture (only legs)
+                            // 'true' means that the armor material is dyeable; however, the item must also be added to the 'minecraft:dyeable' tag
+                            new ArmorMaterial.Layer(
+                                    ResourceLocation.fromNamespaceAndPath(bettercopper.MODID, "copper")
+                            )
+                    ),
+                    // Returns the toughness value of the armor. The toughness value is an additional value included in
+                    // damage calculation, for more information, refer to the Minecraft Wiki's article on armor mechanics:
+                    // https://minecraft.wiki/w/Armor#Armor_toughness
+                    // Only diamond and netherite have values greater than 0 here, so we just return 0.
+                    0,
+                    // Returns the knockback resistance value of the armor. While wearing this armor, the player is
+                    // immune to knockback to some degree. If the player has a total knockback resistance value of 1 or greater
+                    // from all armor pieces combined, they will not take any knockback at all.
+                    // Only netherite has values greater than 0 here, so we just return 0.
+                    0
+            ));
 }
