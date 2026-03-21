@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "bettercopper:copper_leggings"
+  },
+  "result": {
+  "id": "bettercopper:copper_nugget"
+},
+  "experience": 0.7,
+  "cookingtime": 100
+}

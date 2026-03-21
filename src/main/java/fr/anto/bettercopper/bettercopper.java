@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(bettercopper.MODID)
 public class bettercopper
 {
@@ -64,6 +63,7 @@ public class bettercopper
     {
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS){
             event.accept(ModItems.COPPER_HEART);
+            event.accept(ModItems.REVERSED_COPPER_HEART);
         }
     }
 

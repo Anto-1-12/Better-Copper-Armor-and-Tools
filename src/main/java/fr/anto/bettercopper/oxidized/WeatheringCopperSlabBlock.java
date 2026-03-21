@@ -6,7 +6,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
@@ -33,7 +33,7 @@ public class WeatheringCopperSlabBlock extends SlabBlock implements WeatheringCo
    }
 
    @Override
-   public InteractionResult use(BlockState bstate, Level level, BlockPos Bpos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+   public ItemInteractionResult useItemOn(ItemStack pStack, BlockState bstate, Level level, BlockPos Bpos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 
       Level world = player.level();
       ItemStack heldItem = player.getItemInHand(hand);
@@ -55,7 +55,7 @@ public class WeatheringCopperSlabBlock extends SlabBlock implements WeatheringCo
                      player.playSound(SoundEvents.AXE_SCRAPE);
 
                      if (heldItem.isDamageableItem()) {
-                        heldItem.hurtAndBreak(1, player, (entity) -> entity.broadcastBreakEvent(hand));
+                        heldItem.hurtAndBreak(1, player, pStack.getEquipmentSlot());
                      }
 
                      for (int i = 0; i < 10; i++) {
@@ -83,7 +83,7 @@ public class WeatheringCopperSlabBlock extends SlabBlock implements WeatheringCo
                      player.playSound(SoundEvents.AXE_SCRAPE);
 
                      if (heldItem.isDamageableItem()) {
-                        heldItem.hurtAndBreak(1, player, (entity) -> entity.broadcastBreakEvent(hand));
+                        heldItem.hurtAndBreak(1, player, pStack.getEquipmentSlot());
                      }
 
                      for (int i = 0; i < 10; i++) {
@@ -123,7 +123,7 @@ public class WeatheringCopperSlabBlock extends SlabBlock implements WeatheringCo
             });
          }
       }
-      return super.use(bstate, level, Bpos, player, hand, hitResult);
+      return super.useItemOn(pStack, bstate, level, Bpos, player, hand, hitResult);
    }
 
    public boolean isRandomlyTicking(BlockState state) {
