@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "bettercopper:block/waxed_exposed_copper_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/exposed_copper"
+    },
+    "type=top": {
+      "model": "bettercopper:block/waxed_exposed_copper_slab_top"
+    }
+  }
+}

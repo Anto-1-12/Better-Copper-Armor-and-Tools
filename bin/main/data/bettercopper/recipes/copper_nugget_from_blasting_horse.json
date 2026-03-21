@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "bettercopper:copper_horse_armor"
+  },
+  "result": "bettercopper:copper_nugget",
+  "experience": 0.7,
+  "cookingtime": 100
+}

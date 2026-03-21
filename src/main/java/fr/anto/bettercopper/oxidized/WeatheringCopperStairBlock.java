@@ -54,7 +54,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
 
                   WeatheringCopper.getPrevious(bstate).ifPresent((state) -> {
                      level.setBlockAndUpdate(Bpos, state);
-                     player.swing(player.getUsedItemHand());
+                     player.swing(hand);
                      player.playSound(SoundEvents.AXE_SCRAPE,1f,1f);
 
                      if (heldItem.isDamageableItem()) {
@@ -82,7 +82,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
             if (weatheringCopperBlock.waxedorno == Waxedorno.Waxed){
                WeatheringCopper.getWaxedVarient(bstate).ifPresent((state) -> {
                   level.setBlockAndUpdate(Bpos, state);
-                  player.swing(player.getUsedItemHand());
+                  player.swing(hand);
                   player.playSound(SoundEvents.AXE_SCRAPE,1f,1f);
 
                   if (heldItem.isDamageableItem()) {
@@ -110,7 +110,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
          if (clickedBlock instanceof WeatheringCopperStairBlock weatheringCopperBlock && weatheringCopperBlock.waxedorno == Waxedorno.noWaxed) {
             WeatheringCopper.getWaxedVarient(bstate).ifPresent((state) -> {
                level.setBlockAndUpdate(Bpos, state);
-               player.swing(player.getUsedItemHand());
+               player.swing(hand);
                player.playSound(SoundEvents.HONEYCOMB_WAX_ON, 1f ,1f);
 
                if (!player.getAbilities().instabuild) {

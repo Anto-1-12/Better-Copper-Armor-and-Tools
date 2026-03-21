@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "bettercopper:copper_helmet"
+  },
+  "result": "bettercopper:copper_nugget",
+  "experience": 0.7,
+  "cookingtime": 200
+}

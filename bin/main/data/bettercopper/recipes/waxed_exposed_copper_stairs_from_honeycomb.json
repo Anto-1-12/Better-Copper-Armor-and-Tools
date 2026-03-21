@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_exposed_copper_stairs",
+  "ingredients": [
+    {
+      "item": "bettercopper:exposed_copper_stairs"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "item": "bettercopper:waxed_exposed_copper_stairs"
+  }
+}

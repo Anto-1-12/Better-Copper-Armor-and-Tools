@@ -1,5 +1,6 @@
 package fr.anto.bettercopper;
 
+import fr.anto.bettercopper.event.OnPlayerCloneDeath;
 import fr.anto.bettercopper.init.ModBlocks;
 import fr.anto.bettercopper.init.ModItems;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,6 +25,7 @@ public class bettercopper
         ModItems.ITEMS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new OnPlayerCloneDeath());
     }
     private void commonSetup(final FMLCommonSetupEvent event)
     {

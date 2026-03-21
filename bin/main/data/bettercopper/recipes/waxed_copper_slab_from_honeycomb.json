@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_copper_slab",
+  "ingredients": [
+    {
+      "item": "bettercopper:copper_slab"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "item": "bettercopper:waxed_copper_slab"
+  }
+}

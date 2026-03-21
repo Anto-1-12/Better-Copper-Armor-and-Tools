@@ -52,7 +52,7 @@ public class WeatheringCopperSlabBlock extends SlabBlock implements WeatheringCo
 
                   WeatheringCopper.getPrevious(bstate).ifPresent((state) -> {
                      level.setBlockAndUpdate(Bpos, state);
-                     player.swing(player.getUsedItemHand());
+                     player.swing(hand);
                      player.playSound(SoundEvents.AXE_SCRAPE, 1f, 1f);
 
                      if (heldItem.isDamageableItem()) {
@@ -80,7 +80,7 @@ public class WeatheringCopperSlabBlock extends SlabBlock implements WeatheringCo
             if (weatheringCopperBlock.waxedorno == Waxedorno.Waxed){
                   WeatheringCopper.getWaxedVarient(bstate).ifPresent((state) -> {
                      level.setBlockAndUpdate(Bpos, state);
-                     player.swing(player.getUsedItemHand());
+                     player.swing(hand);
                      player.playSound(SoundEvents.AXE_SCRAPE, 1f, 1f);
 
                      if (heldItem.isDamageableItem()) {
@@ -107,7 +107,7 @@ public class WeatheringCopperSlabBlock extends SlabBlock implements WeatheringCo
          if (clickedBlock instanceof WeatheringCopperSlabBlock weatheringCopperBlock && weatheringCopperBlock.waxedorno == Waxedorno.noWaxed) {
             WeatheringCopper.getWaxedVarient(bstate).ifPresent((state) -> {
                level.setBlockAndUpdate(Bpos, state);
-               player.swing(player.getUsedItemHand());
+               player.swing(hand);
                player.playSound(SoundEvents.HONEYCOMB_WAX_ON, 1f, 1f);
 
                if (!player.getAbilities().instabuild) {
