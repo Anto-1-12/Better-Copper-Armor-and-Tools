@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 
 public enum CustomArmorMaterials implements StringRepresentable, ArmorMaterial {
 
-    COPPER_ARMOR(bettercopper.MODID + ":copper", 15, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266654_) -> {
+    COPPER_ARMOR(bettercopper.MODID + ":copper", 13, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266654_) -> {
         p_266654_.put(ArmorItem.Type.BOOTS, 2);
         p_266654_.put(ArmorItem.Type.LEGGINGS, 4);
         p_266654_.put(ArmorItem.Type.CHESTPLATE, 5);

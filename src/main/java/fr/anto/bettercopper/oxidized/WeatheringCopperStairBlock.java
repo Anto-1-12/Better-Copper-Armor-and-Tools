@@ -15,7 +15,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
@@ -24,14 +23,14 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
    private final Waxedorno waxedorno;
 
 
-   public WeatheringCopperStairBlock(WeatherState weatherState, BlockState baseBlockState, BlockBehaviour.Properties properties, Waxedorno waxedorno) {
+   public WeatheringCopperStairBlock(WeatherState weatherState, BlockState baseBlockState, Properties properties, Waxedorno waxedorno) {
       super(baseBlockState, properties);
       this.weatherState = weatherState;
       this.waxedorno = waxedorno;
    }
 
    public void randomTick(BlockState bstate, ServerLevel slevel, BlockPos bpos, RandomSource rsource) {
-      this.changeOverTime(bstate, slevel, bpos, rsource);
+      this.onRandomTick(bstate, slevel, bpos, rsource);
    }
 
    @Override
@@ -47,7 +46,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
 
          if (clickedBlock instanceof WeatheringCopperStairBlock weatheringCopperBlock) {
 
-            if (weatheringCopperBlock.getAge() != WeatheringCopper.WeatherState.UNAFFECTED) {
+            if (weatheringCopperBlock.getAge() != WeatherState.UNAFFECTED) {
 
                if (WeatheringCopper.getPrevious(bstate).isPresent()) {
 
@@ -78,7 +77,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
          Block clickedBlock = bstate.getBlock();
 
          if (clickedBlock instanceof WeatheringCopperStairBlock weatheringCopperBlock) {
-            if (weatheringCopperBlock.waxedorno == WeatheringCopper.Waxedorno.Waxed){
+            if (weatheringCopperBlock.waxedorno == Waxedorno.Waxed){
                WeatheringCopper.getWaxedVarient(bstate).ifPresent((state) -> {
                   level.setBlockAndUpdate(Bpos, state);
                   player.swing(player.getUsedItemHand());
@@ -106,7 +105,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
 
          Block clickedBlock = bstate.getBlock();
 
-         if (clickedBlock instanceof WeatheringCopperStairBlock weatheringCopperBlock && weatheringCopperBlock.waxedorno == WeatheringCopper.Waxedorno.noWaxed) {
+         if (clickedBlock instanceof WeatheringCopperStairBlock weatheringCopperBlock && weatheringCopperBlock.waxedorno == Waxedorno.noWaxed) {
             WeatheringCopper.getWaxedVarient(bstate).ifPresent((state) -> {
                level.setBlockAndUpdate(Bpos, state);
                player.swing(player.getUsedItemHand());
@@ -134,7 +133,7 @@ public class WeatheringCopperStairBlock extends StairBlock implements Weathering
       return WeatheringCopper.getNext(state.getBlock()).isPresent();
    }
 
-   public WeatheringCopper.WeatherState getAge() {
+   public WeatherState getAge() {
       return this.weatherState;
    }
 

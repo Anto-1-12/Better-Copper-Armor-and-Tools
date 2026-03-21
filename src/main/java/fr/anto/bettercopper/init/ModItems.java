@@ -3,9 +3,7 @@ package fr.anto.bettercopper.init;
 import fr.anto.bettercopper.bettercopper;
 import fr.anto.bettercopper.utils.CustomArmorMaterials;
 import fr.anto.bettercopper.utils.CustomItemTiers;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.food.FoodProperties;
+import fr.anto.bettercopper.utils.HeartItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -26,16 +24,13 @@ public class ModItems {
     public static final RegistryObject<Item> COPPER_HOE = ITEMS.register("copper_hoe", () ->new HoeItem(CustomItemTiers.COPPER, -2, -1.0F, new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> COPPER_HELMET = ITEMS.register("copper_helmet", () ->new ArmorItem(CustomArmorMaterials.COPPER_ARMOR, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> COPPER_CHESTPLATE = ITEMS.register("copper_chestplate", () ->new ArmorItem(fr.anto.bettercopper.utils.CustomArmorMaterials.COPPER_ARMOR, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> COPPER_LEGGINGS = ITEMS.register("copper_leggings", () ->new ArmorItem(fr.anto.bettercopper.utils.CustomArmorMaterials.COPPER_ARMOR, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> COPPER_BOOTS = ITEMS.register("copper_boots", () ->new ArmorItem(fr.anto.bettercopper.utils.CustomArmorMaterials.COPPER_ARMOR, ArmorItem.Type.BOOTS,new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> COPPER_CHESTPLATE = ITEMS.register("copper_chestplate", () ->new ArmorItem(CustomArmorMaterials.COPPER_ARMOR, ArmorItem.Type.CHESTPLATE, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> COPPER_LEGGINGS = ITEMS.register("copper_leggings", () ->new ArmorItem(CustomArmorMaterials.COPPER_ARMOR, ArmorItem.Type.LEGGINGS, new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> COPPER_BOOTS = ITEMS.register("copper_boots", () ->new ArmorItem(CustomArmorMaterials.COPPER_ARMOR, ArmorItem.Type.BOOTS,new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> COPPER_HORSE_ARMOR = ITEMS.register("copper_horse_armor", () ->new HorseArmorItem( 8, "copper", new Item.Properties().stacksTo(1)));
 
 
-    public static final RegistryObject<Item> COPPER_HEART = ITEMS.register("copper_heart", () -> new Item(new Item.Properties()
-            .food(new FoodProperties.Builder().nutrition(20).saturationMod(1f).fast().effect(new MobEffectInstance(MobEffects.REGENERATION, 20,254),1).build())));
-
-
-
+    public static final RegistryObject<Item> COPPER_HEART = ITEMS.register("copper_heart", () -> new HeartItem(new Item.Properties(), true));
+    public static final RegistryObject<Item> REVERSED_COPPER_HEART = ITEMS.register("reversed_copper_heart", () -> new HeartItem(new Item.Properties(), false));
 }
 

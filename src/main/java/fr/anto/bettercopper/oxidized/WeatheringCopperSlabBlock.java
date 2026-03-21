@@ -29,7 +29,7 @@ public class WeatheringCopperSlabBlock extends SlabBlock implements WeatheringCo
    }
 
    public void randomTick(BlockState bstate, ServerLevel slevel, BlockPos bpos, RandomSource rsource) {
-      this.changeOverTime(bstate, slevel, bpos, rsource);
+      this.onRandomTick(bstate, slevel, bpos, rsource);
    }
 
    @Override
@@ -76,7 +76,7 @@ public class WeatheringCopperSlabBlock extends SlabBlock implements WeatheringCo
          Block clickedBlock = bstate.getBlock();
 
          if (clickedBlock instanceof WeatheringCopperSlabBlock weatheringCopperBlock) {
-            if (weatheringCopperBlock.waxedorno == WeatheringCopper.Waxedorno.Waxed){
+            if (weatheringCopperBlock.waxedorno == Waxedorno.Waxed){
                   WeatheringCopper.getWaxedVarient(bstate).ifPresent((state) -> {
                      level.setBlockAndUpdate(Bpos, state);
                      player.swing(player.getUsedItemHand());
@@ -103,7 +103,7 @@ public class WeatheringCopperSlabBlock extends SlabBlock implements WeatheringCo
 
          Block clickedBlock = bstate.getBlock();
 
-         if (clickedBlock instanceof WeatheringCopperSlabBlock weatheringCopperBlock && weatheringCopperBlock.waxedorno == WeatheringCopper.Waxedorno.noWaxed) {
+         if (clickedBlock instanceof WeatheringCopperSlabBlock weatheringCopperBlock && weatheringCopperBlock.waxedorno == Waxedorno.noWaxed) {
             WeatheringCopper.getWaxedVarient(bstate).ifPresent((state) -> {
                level.setBlockAndUpdate(Bpos, state);
                player.swing(player.getUsedItemHand());

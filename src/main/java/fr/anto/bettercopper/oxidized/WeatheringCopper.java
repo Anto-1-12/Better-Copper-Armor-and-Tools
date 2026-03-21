@@ -52,7 +52,7 @@ public interface WeatheringCopper extends ChangeOverTimeBlock<WeatheringCopper.W
    }
 
    default float getChanceModifier() {
-      return this.getAge() == WeatheringCopper.WeatherState.UNAFFECTED ? 0.75F : 1.0F;
+      return this.getAge() == WeatherState.UNAFFECTED ? 0.75F : 1.0F;
    }
 
    public static enum WeatherState {

@@ -1,5 +1,6 @@
 package fr.anto.bettercopper;
 
+import fr.anto.bettercopper.event.OnPlayerCloneDeath;
 import fr.anto.bettercopper.init.ModBlocks;
 import fr.anto.bettercopper.init.ModItems;
 import net.minecraft.world.item.*;
@@ -26,6 +27,7 @@ public class bettercopper
         ModItems.ITEMS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new OnPlayerCloneDeath());
 
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::addCreative2);
@@ -64,6 +66,7 @@ public class bettercopper
     {
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS){
             event.accept(ModItems.COPPER_HEART);
+            event.accept(ModItems.REVERSED_COPPER_HEART);
         }
     }
 
