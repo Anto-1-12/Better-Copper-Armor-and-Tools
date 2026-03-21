@@ -1,0 +1,8 @@
+/.gradle
+/.idea
+/.eclipse
+/build
+/gradle
+/run
+/run-data
+/bin
